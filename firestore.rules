@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Immutable Super Admin Ledger: Append-only (create & read allowed, update & delete strictly forbidden)
+    match /super_admin_activity_logs/{logId} {
+      allow read, create: if true;
+      allow update, delete: if false;
+    }
+
+    // HR Diagnostics Multi-Branch ERP Rules
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

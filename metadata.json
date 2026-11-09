@@ -1,0 +1,6 @@
+{
+  "name": "HR Diagnostics Enterprise Inventory & Asset Management",
+  "description": "Enterprise-grade multi-branch inventory, warehouse hierarchy, and asset management system with batch/expiry tracking, CMMS maintenance, offline sync, and PWA.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

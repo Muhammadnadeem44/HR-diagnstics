@@ -1,0 +1,278 @@
+{
+  "entities": {
+    "InventoryItem": {
+      "title": "Inventory Item",
+      "description": "Diagnostic reagents, controls, calibrators and consumables",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sku": { "type": "string" },
+        "branchId": { "type": "string" },
+        "quantityOnHand": { "type": "number" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "name"]
+    },
+    "PurchaseOrder": {
+      "title": "Purchase Order",
+      "description": "Official procurement purchase order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "poNumber": { "type": "string" },
+        "status": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "poNumber"]
+    },
+    "StockTransfer": {
+      "title": "Stock Transfer",
+      "description": "Inter-branch cold chain stock transfer challan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "transferNumber": { "type": "string" },
+        "status": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "transferNumber"]
+    },
+    "GoodsReceiptNote": {
+      "title": "Goods Receipt Note",
+      "description": "GRN receiving inspection voucher",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "grnNumber": { "type": "string" },
+        "poNumber": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "grnNumber"]
+    },
+    "UserAccount": {
+      "title": "User Account",
+      "description": "Staff profile and credentials",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" }
+      },
+      "required": ["id", "email"]
+    },
+    "Branch": {
+      "title": "Branch",
+      "description": "Hospital lab branch location",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "InventoryUsageRecord": {
+      "title": "Inventory Usage Record",
+      "description": "Branch-specific reagent consumption and employee stock deduction record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "itemId": { "type": "string" },
+        "itemSku": { "type": "string" },
+        "itemName": { "type": "string" },
+        "branchId": { "type": "string" },
+        "branchName": { "type": "string" },
+        "quantityUsed": { "type": "number" },
+        "stockBefore": { "type": "number" },
+        "stockAfter": { "type": "number" },
+        "usedByEmployeeName": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "itemId", "branchId", "quantityUsed"]
+    },
+    "SuperAdminActivityLog": {
+      "title": "Super Admin Immutable Activity Log",
+      "description": "Tamper-evident cryptographically chained ledger of all login attempts and configuration changes by super_admin",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sequenceNumber": { "type": "number" },
+        "timestamp": { "type": "string" },
+        "category": { "type": "string" },
+        "actionType": { "type": "string" },
+        "actorEmail": { "type": "string" },
+        "actorName": { "type": "string" },
+        "status": { "type": "string" },
+        "details": { "type": "string" },
+        "previousHash": { "type": "string" },
+        "currentHash": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "timestamp", "category", "actionType", "actorEmail", "currentHash"]
+    },
+    "RadiologyStudy": {
+      "title": "Radiology Study",
+      "description": "Ultrasound and Digital X-Ray patient examination request and clinical report",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studyId": { "type": "string" },
+        "patientId": { "type": "string" },
+        "patientMRN": { "type": "string" },
+        "patientName": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "examinationDate": { "type": "string" },
+        "modality": { "type": "string" },
+        "examinationType": { "type": "string" },
+        "referringDoctor": { "type": "string" },
+        "reportingDoctorName": { "type": "string" },
+        "status": { "type": "string" },
+        "impression": { "type": "string" },
+        "freeFormContent": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "studyId", "patientName", "modality", "status"]
+    },
+    "ClinicInvoice": {
+      "title": "Clinic Invoice",
+      "description": "Cash counter billing invoice, payment splits, and receipts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "receiptNumber": { "type": "string" },
+        "patientMRN": { "type": "string" },
+        "patientName": { "type": "string" },
+        "netPayable": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "paymentStatus": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "invoiceNumber", "patientName", "netPayable", "paidAmount"]
+    },
+    "CashShiftSession": {
+      "title": "Cash Shift Session",
+      "description": "Cashier drawer float, shift reconciliation, and Z-report summary",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "shiftNumber": { "type": "string" },
+        "cashierName": { "type": "string" },
+        "status": { "type": "string" },
+        "openingBalance": { "type": "number" },
+        "cashInHandExpected": { "type": "number" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "shiftNumber", "cashierName", "status"]
+    },
+    "ClinicToken": {
+      "title": "Clinic Token",
+      "description": "Daily queue token for reception, waiting room TV, and consultation/radiology departments",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tokenNumber": { "type": "string" },
+        "tokenDate": { "type": "string" },
+        "sequenceNumber": { "type": "number" },
+        "department": { "type": "string" },
+        "serviceName": { "type": "string" },
+        "patientName": { "type": "string" },
+        "status": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "tokenNumber", "tokenDate", "status"]
+    },
+    "ClinicPatient": {
+      "title": "Clinic Patient",
+      "description": "Permanent patient demographics and medical record registration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "mrNumber": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "gender": { "type": "string" },
+        "age": { "type": "number" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "mrNumber", "name", "phone"]
+    },
+    "ClinicVisit": {
+      "title": "Clinic Visit",
+      "description": "Episode of care visit linked to invoice and token",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "visitNumber": { "type": "string" },
+        "patientId": { "type": "string" },
+        "patientName": { "type": "string" },
+        "department": { "type": "string" },
+        "status": { "type": "string" },
+        "_updatedAt": { "type": "number" }
+      },
+      "required": ["id", "visitNumber", "patientId", "department"]
+    }
+  },
+  "firestore": {
+    "/clinic_invoices/{invoiceId}": {
+      "schema": { "$ref": "#/entities/ClinicInvoice" },
+      "description": "Point-of-sale customer billing invoices and payment records"
+    },
+    "/clinic_tokens/{tokenId}": {
+      "schema": { "$ref": "#/entities/ClinicToken" },
+      "description": "Daily sequential tokens and waiting queue management"
+    },
+    "/clinic_patients/{patientId}": {
+      "schema": { "$ref": "#/entities/ClinicPatient" },
+      "description": "Patient records, MRNs, and demographics"
+    },
+    "/clinic_visits/{visitId}": {
+      "schema": { "$ref": "#/entities/ClinicVisit" },
+      "description": "Clinical visits, examinations, and departmental tracking"
+    },
+    "/cash_shifts/{shiftId}": {
+      "schema": { "$ref": "#/entities/CashShiftSession" },
+      "description": "Cashier drawer shifts, opening floats, and end-of-shift reconciliations"
+    },
+    "/radiology_studies/{studyId}": {
+      "schema": { "$ref": "#/entities/RadiologyStudy" },
+      "description": "Real-time radiology study requests, ultrasound/x-ray reports, and status lifecycle"
+    },
+    "/super_admin_activity_logs/{logId}": {
+      "schema": { "$ref": "#/entities/SuperAdminActivityLog" },
+      "description": "Immutable ledger of login attempts and administrative configuration changes"
+    },
+    "/inventory/{itemId}": {
+      "schema": { "$ref": "#/entities/InventoryItem" },
+      "description": "Reagents and stock catalog with FEFO batches"
+    },
+    "/inventory_usage/{usageId}": {
+      "schema": { "$ref": "#/entities/InventoryUsageRecord" },
+      "description": "Live employee reagent and consumable usage logs per branch"
+    },
+    "/purchase_orders/{poId}": {
+      "schema": { "$ref": "#/entities/PurchaseOrder" },
+      "description": "Purchase orders with 3-tier approval hierarchy"
+    },
+    "/transfers/{transferId}": {
+      "schema": { "$ref": "#/entities/StockTransfer" },
+      "description": "Inter-branch transfers and delivery challans"
+    },
+    "/grns/{grnId}": {
+      "schema": { "$ref": "#/entities/GoodsReceiptNote" },
+      "description": "Goods receipt notes and physical inspection logs"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccount" },
+      "description": "Staff user authentication profiles"
+    },
+    "/branches/{branchId}": {
+      "schema": { "$ref": "#/entities/Branch" },
+      "description": "Branches, regional hubs, and satellite labs"
+    }
+  }
+}
